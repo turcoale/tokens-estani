@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#182d36">
+<title>Tokens de Estani</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f1e9}#tokens-estani{--ink:#10252e;--muted:#53656b;--paper:#fffdf7;font-family:system-ui,-apple-system,sans-serif;color:var(--ink);background:#f4f1e9;padding:28px 18px;border-radius:24px}#tokens-estani .shell{max-width:680px;margin:auto}#tokens-estani header{display:flex;align-items:center;gap:12px;margin-bottom:32px}#tokens-estani .brand{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fffdf7;font-size:24px}#tokens-estani .eyebrow{font-size:12px;font-weight:750;letter-spacing:.12em;text-transform:uppercase}#tokens-estani .sub{color:var(--muted);font-size:14px;margin-top:3px}#tokens-estani h1{font-size:clamp(28px,6vw,40px);letter-spacing:-.04em;margin:0 0 10px;line-height:1.1}#tokens-estani p{line-height:1.5;margin:0 0 22px}#tokens-estani .choices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:24px 0}#tokens-estani button{font:inherit;cursor:pointer}#tokens-estani button:disabled{cursor:default;opacity:1}#tokens-estani .token{position:relative;text-align:left;border:2px solid #52636b;border-radius:20px;padding:18px 12px;color:var(--ink);min-height:140px;background:#b9df7c}#tokens-estani .token:nth-child(2){background:#ffce66}#tokens-estani .token:nth-child(3){background:#9dcbef}#tokens-estani .token:nth-child(4){background:#cfb3ed}#tokens-estani .token[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 4px 0 var(--ink)}#tokens-estani .token,#tokens-estani .token small,#tokens-estani .token strong,#tokens-estani .token span{color:#10252e;-webkit-text-fill-color:#10252e;opacity:1}#tokens-estani .token[aria-pressed="true"]::after{content:"✓";position:absolute;top:10px;right:10px;font-size:18px;font-weight:800;color:#10252e}#tokens-estani .token small{display:block;font-size:11px;letter-spacing:.12em;font-weight:750}#tokens-estani .token strong{display:block;font-size:clamp(32px,8vw,48px);letter-spacing:-.04em;margin:9px 0 0}#tokens-estani .token span{font-size:13px}#tokens-estani .timer-card{background:var(--paper);padding:26px 20px;border-radius:24px;text-align:center;margin:28px 0 18px;box-shadow:0 4px 22px #182d3609}#tokens-estani .status{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em}#tokens-estani .clock{font-size:clamp(60px,15vw,100px);font-weight:750;letter-spacing:-.05em;line-height:1.2;font-variant-numeric:tabular-nums;margin:14px 0}#tokens-estani .track{height:8px;border-radius:20px;background:#e8eae4;overflow:hidden;margin:16px 0 24px}#tokens-estani .fill{height:100%;background:#6b8644;width:100%;transition:width .2s linear}#tokens-estani .actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}#tokens-estani .primary,#tokens-estani .secondary{border-radius:14px;padding:15px 20px;font-weight:700;border:1px solid var(--ink);min-height:48px}#tokens-estani .primary{background:var(--ink);color:#fffdf7}#tokens-estani .secondary{background:transparent;color:var(--ink)}#tokens-estani .message{color:var(--muted);margin:16px 0 0;font-size:14px;min-height:42px}#tokens-estani .sound{border:0;background:transparent;color:var(--ink);text-decoration:underline;padding:12px;font-size:14px}#tokens-estani .note{font-size:13px;color:var(--muted);text-align:center;margin:0}#tokens-estani .finished{background:#f8dfcc}#tokens-estani .finished .fill{background:#ac4c28}#tokens-estani [hidden]{display:none!important}#tokens-estani .demo{margin-top:8px;font-size:13px}#tokens-estani footer{text-align:center;font-size:12px;letter-spacing:.06em;color:var(--muted);margin-top:26px}@media(max-width:520px){#tokens-estani .choices{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:380px){#tokens-estani{padding:22px 12px}#tokens-estani .choices{gap:7px}#tokens-estani .token{padding:14px 9px;min-height:126px}#tokens-estani .timer-card{padding:22px 14px}}
+</style>
+</head>
+<body>
+<div id="tokens-estani">
+<main class="shell">
+<header><span class="brand" aria-hidden="true">✦</span><div><div class="eyebrow">Tokens de Estani</div><div class="sub">Un token. Un ratito de pantalla.</div></div></header>
+<h1>Tu tiempo empieza acá.</h1>
+<p>Elegí el token que te dieron. Cuando estés listo, tocá empezar.</p>
+<div class="choices" aria-label="Duración del token">
+<button class="token cursor-interaction" data-min="15" aria-pressed="true"><small>TOKEN</small><strong>15</strong><span>minutos</span></button>
+<button class="token cursor-interaction" data-min="30" aria-pressed="false"><small>TOKEN</small><strong>30</strong><span>minutos</span></button>
+<button class="token cursor-interaction" data-min="60" aria-pressed="false"><small>TOKEN</small><strong>60</strong><span>minutos</span></button>
+<button class="token cursor-interaction" data-min="1" aria-pressed="false"><small>PRUEBA</small><strong>1</strong><span>minuto</span></button>
+</div>
+<section class="timer-card" aria-label="Temporizador">
+<div class="status" data-status>Token listo</div>
+<div class="clock" data-clock role="timer" aria-label="Tiempo restante">15:00</div>
+<div class="track" aria-hidden="true"><div class="fill" data-fill></div></div>
+<div class="actions"><button class="primary cursor-interaction" data-start>Empezar mi tiempo</button><button class="secondary cursor-interaction" data-cancel hidden>Terminar antes</button><button class="primary cursor-interaction" data-ack hidden>Listo, terminé</button></div>
+<p class="message" data-message aria-live="polite">La alarma te avisa cuando llega el momento de parar.</p>
+<button class="sound cursor-interaction" data-sound>Probar el sonido</button>
+</section>
+<p class="note">Dejá esta página abierta y el volumen encendido.<br>No bloquees este celular durante el token.<br>Si usás otra pantalla, este dispositivo puede ser tu reloj.</p>
+<footer>UN RATITO DE PANTALLA · DESPUÉS, A OTRA COSA</footer>
+</main>
+</div>
+<script>
+(() => {
+  const root = document.getElementById('tokens-estani');
+  const q = s => root.querySelector(s);
+  const preview = root.hasAttribute('data-preview');
+  const allowed = [1,15,30,60];
+  const pathToken = Number(location.pathname.match(/\/(1|15|30|60)(?:\/|\/index\.html)?$/)?.[1]);
+  const requested = Number(new URLSearchParams(location.search).get('token') || pathToken || 15);
+  let minutes = allowed.includes(requested) ? requested : 15;
+  let duration = minutes * 60, endAt = null, finished = false, context = null;
+  let alarmInterval = null, wake = null, soundReady = false;
+  const base = location.pathname.replace(/(?:1|15|30|60)(?:\/|\/index\.html)?$/, '').replace(/index\.html$/, '');
+  const key = 'estani-token-v1:' + (preview ? 'preview' : base);
+  const buttons = [...root.querySelectorAll('[data-min]')];
+  function persist() {
+    if (preview) return;
+    try { localStorage.setItem(key, JSON.stringify({minutes,duration,endAt,finished})); } catch (_) {}
+  }
+  function restore() {
+    if (preview) return;
+    try {
+      const s = JSON.parse(localStorage.getItem(key));
+      if (s && allowed.includes(s.minutes) && s.duration === s.minutes * 60 &&
+          (s.endAt === null || (Number.isFinite(s.endAt) && s.endAt <= Date.now() + s.duration*1000)) &&
+          typeof s.finished === 'boolean' && (s.endAt || s.finished)) {
+        minutes=s.minutes; duration=s.duration; endAt=s.endAt; finished=s.finished;
+      }
+    } catch (_) {}
+  }
+  function format(s) { s=Math.max(0,Math.ceil(s)); return Math.floor(s/60)+':'+String(s%60).padStart(2,'0'); }
+  async function unlockSound() {
+    try {
+      const Audio = window.AudioContext || window.webkitAudioContext;
+      if (!Audio) throw new Error('audio');
+      context ||= new Audio();
+      await context.resume(); soundReady = context.state === 'running';
+    } catch (_) { soundReady=false; }
+    return soundReady;
+  }
+  function beep() {
+    if (!context || context.state !== 'running') return;
+    [0,.55,1.1,1.65].forEach((offset,index) => {
+      const osc=context.createOscillator(), gain=context.createGain(), now=context.currentTime+offset;
+      osc.type='triangle';
+      osc.frequency.value=index%2?1174:880;
+      gain.gain.setValueAtTime(.001,now);
+      gain.gain.exponentialRampToValueAtTime(.8,now+.025);
+      gain.gain.setValueAtTime(.8,now+.35);
+      gain.gain.exponentialRampToValueAtTime(.001,now+.4);
+      osc.connect(gain).connect(context.destination); osc.start(now); osc.stop(now+.42);
+      osc.onended=()=>{osc.disconnect();gain.disconnect();};
+    });
+  }
+  async function keepAwake() {
+    if (!endAt || document.hidden || wake) return;
+    try { wake=await navigator.wakeLock.request('screen'); wake.addEventListener('release',()=>{wake=null;}); } catch (_) {}
+  }
+  function releaseWake() { if(wake) { wake.release().catch(()=>{}); wake=null; } }
+  function stopAlarm() { clearInterval(alarmInterval); alarmInterval=null; }
+  function alarm() {
+    if (alarmInterval || !soundReady) return;
+    beep(); alarmInterval=setInterval(beep,2500);
+    try { navigator.vibrate?.([250,150,250]); } catch (_) {}
+  }
+  function render() {
+    const remaining=finished?0:endAt?Math.max(0,(endAt-Date.now())/1000):duration;
+    q('[data-clock]').textContent=format(remaining);
+    q('[data-fill]').style.width=Math.min(100,remaining/duration*100)+'%';
+    q('[data-status]').textContent=finished?'¡Tiempo terminado!':endAt?'Tiempo en curso':'Token listo';
+    q('.timer-card').classList.toggle('finished',finished);
+    q('[data-start]').hidden=!!endAt || finished;
+    q('[data-cancel]').hidden=!endAt;
+    q('[data-ack]').hidden=!finished;
+    buttons.forEach(b=>{b.disabled=!!endAt || finished;b.setAttribute('aria-pressed',String(Number(b.dataset.min)===minutes));});
+    if (!preview) document.title=format(remaining)+' · Tokens de Estani';
+  }
+  function finish() {
+    endAt=null; finished=true; persist(); releaseWake();
+    q('[data-message]').textContent=soundReady?'Se terminó el token. Es hora de dejar la pantalla.':'Se terminó el token. Tocá “Activar la alarma” para escuchar el aviso.';
+    if(!soundReady) q('[data-sound]').textContent='Activar la alarma';
+    render(); alarm(); q('[data-ack]').focus();
+  }
+  function tick() { if(endAt && Date.now()>=endAt) finish(); else render(); }
+  async function start(seconds=minutes*60) {
+    q('[data-start]').disabled=true;
+    await unlockSound();
+    duration=seconds; finished=false; endAt=Date.now()+seconds*1000; persist();
+    q('[data-message]').textContent=soundReady?'Disfrutá tu tiempo. Te avisamos cuando termine.':'El contador está andando, pero no pudimos activar el sonido. Probá el sonido antes de seguir.';
+    q('[data-start]').disabled=false; render(); keepAwake();
+  }
+  function reset() {
+    stopAlarm(); releaseWake(); endAt=null;finished=false;duration=minutes*60;persist();
+    q('[data-message]').textContent='Token listo para usar cuando te den otro.';
+    q('[data-sound]').textContent='Probar el sonido';render();q('[data-start]').focus();
+  }
+  buttons.forEach(b=>b.addEventListener('click',()=>{
+    if(endAt || finished) return;
+    minutes=Number(b.dataset.min);duration=minutes*60;
+    if(!preview) { try { history.replaceState(null,'',base+minutes+'/'); } catch (_) {} }
+    persist();render();
+  }));
+  q('[data-start]').addEventListener('click',()=>start());
+  q('[data-cancel]').addEventListener('click',()=>{if(confirm('¿Terminar este token antes de tiempo?')) reset();});
+  q('[data-ack]').addEventListener('click',reset);
+  q('[data-sound]').addEventListener('click',async()=>{
+    const ok=await unlockSound();
+    if(ok) { if(finished) alarm(); else beep(); }
+    q('[data-message]').textContent=ok?(finished?'Se terminó el token. Es hora de dejar la pantalla.':'Si escuchaste los pitidos, el sonido está listo. Revisá el volumen.'):'No pudimos reproducir el sonido. Revisá el navegador y el volumen.';
+  });
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden){tick();keepAwake();if(finished) alarm();}});
+  window.addEventListener('pageshow',tick);
+  restore();
+  if(endAt) q('[data-message]').textContent='Tu token sigue en curso. Tocá “Probar el sonido” para reactivar la alarma después de recargar.';
+  if(finished) {q('[data-message]').textContent='Este token ya terminó. Tocá “Activar la alarma” para escuchar el aviso.';q('[data-sound]').textContent='Activar la alarma';}
+  tick(); setInterval(tick,250);
+})();
+</script>
+</body>
+</html>
